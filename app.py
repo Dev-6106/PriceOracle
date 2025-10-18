@@ -16,7 +16,7 @@ from services.predictor import PricePredictor
 
 # Page config
 st.set_page_config(
-    page_title="Laptop Price Intelligence System",
+    page_title="LaptopLens - Price Tracking & Analyzing System",
     page_icon="💻",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -285,7 +285,7 @@ def register_user(username, email, password, name):
 
 # Login/Registration Page
 if st.session_state['authentication_status'] is None:
-    st.markdown("<h1 class='main-header'>💻 Laptop Price Intelligence System</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='main-header'>💻 LaptopLens - Price Tracking & Analyzing System</h1>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
@@ -388,7 +388,7 @@ elif st.session_state['authentication_status']:
             st.rerun()
     
     # Main content with tabs
-    st.markdown("<h1 class='main-header'>💻 Laptop Price Intelligence Dashboard</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='main-header'>💻 LaptopLens - Price Tracking & Analyzing System</h1>", unsafe_allow_html=True)
     
     # Create tabs for different sections
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
@@ -998,21 +998,24 @@ elif st.session_state['authentication_status']:
                                 icon = "📊"
                             
                             st.markdown(f"""
-                            <div style='background-color: {"#d4edda" if alert_type == "success" else "#fff3cd" if alert_type == "warning" else "#d1ecf1"}; 
-                                        padding: 20px; border-radius: 10px; margin: 10px 0;'>
-                                <h3>{icon} AI Recommendation: {summary['recommendation']}</h3>
-                                <p style='font-size: 1.1rem; margin: 10px 0;'>{summary['reason']}</p>
-                                <hr>
-                                <p><strong>Expected price in {len(predictions['predictions'])} days:</strong> ₹{summary['week_ahead_price']:,.0f}</p>
-                                <p><strong>Expected change:</strong> ₹{summary['expected_change']:+,.0f} ({summary['expected_change_pct']:+.1f}%)</p>
-                                <p><strong>Model confidence:</strong> {predictions['model_confidence']*100:.0f}%</p>
-                            </div>
+                                <div style='background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                                            color: #ffffff; 
+                                            padding: 20px; 
+                                            border-radius: 10px; 
+                                            margin: 10px 0;
+                                            box-shadow: 0 4px 15px rgba(0,0,0,0.3);'>
+                                    <h3>{icon} AI Recommendation: {summary['recommendation']}</h3>
+                                    <p style='font-size: 1.1rem; margin: 10px 0;'>{summary['reason']}</p>
+                                    <hr style='border-color: rgba(255,255,255,0.3);'>
+                                    <p><strong>Expected price in {len(predictions['predictions'])} days:</strong> ₹{summary['week_ahead_price']:,.0f}</p>
+                                    <p><strong>Expected change:</strong> ₹{summary['expected_change']:+,.0f} ({summary['expected_change_pct']:+.1f}%)</p>
+                                </div>
                             """, unsafe_allow_html=True)
 
                         with col2:
                             # Best time to buy analysis
                             st.markdown("### 🎯 Best Time to Buy")
-                            
+
                             with st.spinner("Analyzing best purchase timing..."):
                                 best_time = predictor.predict_best_time_to_buy(product.id, 30)
                                 
@@ -1020,16 +1023,21 @@ elif st.session_state['authentication_status']:
                                     btb = best_time['best_time_to_buy']
                                     
                                     st.markdown(f"""
-                                    <div style='background-color: #e8f5e9; padding: 15px; border-radius: 10px;'>
-                                        <h4 style='color: #2e7d32;'>Optimal Purchase Date</h4>
+                                    <div style='background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                                                color: #ffffff; 
+                                                padding: 15px; 
+                                                border-radius: 10px;
+                                                box-shadow: 0 4px 15px rgba(0,0,0,0.3);'>
+                                        <h4 style='color: #ffd700;'>Optimal Purchase Date</h4>
                                         <p style='font-size: 1.2rem; margin: 5px 0;'><strong>{btb['date']}</strong></p>
                                         <p>In <strong>{btb['days_from_now']} days</strong></p>
-                                        <hr>
+                                        <hr style='border-color: rgba(255,255,255,0.3);'>
                                         <p>Expected Price: <strong>₹{btb['expected_price']:,.0f}</strong></p>
                                         <p>Potential Savings: <strong>₹{btb['expected_savings']:,.0f}</strong></p>
                                         <p>Save: <strong>{btb['savings_percentage']:.1f}%</strong></p>
                                     </div>
                                     """, unsafe_allow_html=True)
+
                     
                     # Historical patterns analysis
                     st.subheader("📊 Historical Price Patterns")
@@ -1452,7 +1460,7 @@ elif st.session_state['authentication_status']:
                     st.markdown(f"""
                     <div class="assistant-message">
                         <strong>🤖 AI Assistant:</strong><br>{message['content']}
-                    </div>
+                    
                     """, unsafe_allow_html=True)
         
         # Enhanced suggested queries with dark blue theme
@@ -1576,7 +1584,7 @@ elif st.session_state['authentication_status']:
                     st.rerun()
         
         # Chat input with dark blue theme
-        st.markdown('<div class="chat-input-container">', unsafe_allow_html=True)
+        # st.markdown('<div class="chat-input-container">', unsafe_allow_html=True)
         with st.form("chat_form", clear_on_submit=True):
             user_input = st.text_input(
                 "💬 Ask me anything about laptop prices...",
@@ -1587,6 +1595,7 @@ elif st.session_state['authentication_status']:
             col1, col2, col3 = st.columns([1, 1, 4])
             with col1:
                 submit = st.form_submit_button("🚀 Send", use_container_width=True)
+            # st.markdown("</div>", unsafe_allow_html=True)
             
             if submit and user_input:
                 st.session_state.chat_history.append({'role': 'user', 'content': user_input})
@@ -1720,11 +1729,9 @@ elif st.session_state['authentication_status']:
                         response += "• 📊 Brand comparisons and analysis\n"
                         response += "• 🎯 Best time to buy recommendations\n"
                         response += "• 📉 Price drop alerts and notifications"
-                
+                # st.markdown("</div>", unsafe_allow_html=True)
                 st.session_state.chat_history.append({'role': 'assistant', 'content': response})
                 st.rerun()
-        
-        st.markdown('</div>', unsafe_allow_html=True)
         
         db.close()
     
@@ -2189,8 +2196,7 @@ elif st.session_state['authentication_status']:
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #666; padding: 20px;'>
-    <p>💻 Laptop Price Intelligence System v1.0</p>
-    <p>Built with ❤️ using Streamlit • Powered by AI</p>
+    <p>💻 LaptopLens - Laptop Price Tracking & Analyzing System v1.0</p>
 </div>
 """, unsafe_allow_html=True)
 
