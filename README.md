@@ -107,10 +107,9 @@ It uses Random Forest Regressor and Gradient Boosting Regressor, combined via we
 
 
 🧑‍💻 Author
-Tony Stark
-💼 Developer | AI Engineer | Data Systems Enthusiast
-📧 [Your Email Here]
-🌐 [LinkedIn / Portfolio link]
+Dev Shyara
+
+📧 vasudevahir2006@gmail.com
 
 📜 License
 This project is licensed under the MIT License – free to use, modify, and distribute with attribution.
