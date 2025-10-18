@@ -107,7 +107,8 @@ It uses Random Forest Regressor and Gradient Boosting Regressor, combined via we
 
 
 🧑‍💻 Author
-Tony Stark
+Dev Shyara
+
 📧 vasudevahir2006@gmail.com
 
 📜 License
