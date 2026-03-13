@@ -59,7 +59,7 @@ An advanced **Streamlit + FastAPI** application that combines **web scraping, ma
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/price-intelligence-dashboard.git
+git clone https://github.com/Dev-6106/PriceOracle.git
 cd price-intelligence-dashboard
 2️⃣ Create and Activate Virtual Environment
 bash
